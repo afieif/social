@@ -1,0 +1,11 @@
+ability to expand items to see image and description -> 
+{store item in context and create a template expansion screen , 
+plug in contexted values into that templated screen}
+filters in feed for branch
+(research ads in feed)
+Delete posts more than a year old when loaded from
+firestore
+
+Account Page
+Delete and Edit listing
+Delete image from storage as well
