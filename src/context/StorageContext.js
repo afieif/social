@@ -1,5 +1,8 @@
 import React, { useContext, useState} from 'react';
-import { collection, query, where, getCountFromServer, addDoc, orderBy, getDocs, limit} from "firebase/firestore"; 
+import { collection, query,
+  where, getCountFromServer,
+  addDoc, orderBy, getDocs,
+  limit, deleteDoc} from "firebase/firestore"; 
 import { db } from '../firebase';
 
 const StorageContext = React.createContext();
@@ -11,6 +14,7 @@ export function useStore(){
 
 export function StorageProvider({children}) {
   const[items,setItems] = useState([]);
+  const[myItems,setMyItems] = useState([]);
   const[expandedItem,expandItem] = useState([]);
 
     async function isNewUser(uid){
@@ -67,6 +71,41 @@ export function StorageProvider({children}) {
         console.log("Item not found");
       }
     }
+
+    async function deleteItem(itemId) {
+      try {
+        const querySnapshot = await getDocs(query(collection(db, "SellerItems"), where("uid", "==", itemId)));
+        if (!querySnapshot.empty) {
+          const docToDelete = querySnapshot.docs[0];
+          await deleteDoc(docToDelete.ref);
+          console.log("Item deleted successfully");
+          setMyItems([]);
+        } else {
+          console.log("No matching item found");
+        }
+      } catch (error) {
+        console.error("Error deleting item:", error);
+      }
+    }
+    
+
+    async function getMyItems(uid){
+      const q = query(
+        collection(db, "SellerItems"),
+        where("user", "==", uid),
+        orderBy("timestamp", "desc")
+      );
+    
+      const querySnapshot = await getDocs(q);
+    
+      let filteredItems = [];
+      querySnapshot.forEach((doc) => {
+        filteredItems.push(doc.data());
+        console.log(doc.data());
+      });
+    
+      setMyItems(filteredItems);
+    }
     
 
     async function getItems(){
@@ -88,7 +127,11 @@ export function StorageProvider({children}) {
         items,
         expandItem,
         expandedItem,
-        getItemByUid
+        getItemByUid,
+        myItems,
+        setMyItems,
+        getMyItems,
+        deleteItem
     }
 
     return (

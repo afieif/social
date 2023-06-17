@@ -53,7 +53,8 @@ export default function Sell() {
           price : price,
           whatsapp : whatsappNumber,
           description : description,
-          image: url
+          image: url,
+          user: user.uid
         };
         uploadItem(data,setLoader,NavigateToHome);
       })});

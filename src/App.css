@@ -204,6 +204,20 @@
   color: aliceblue;
 }
 
+
+.logout-btn{
+  margin-top: 10px;
+  padding: 10px 5px;
+  background-color: #4285F4;
+  border-radius: 18px;
+  font-family: 'Inter';
+  border: none;
+  outline: none;
+  color: aliceblue;
+  width: 50vw;
+  align-self: center;
+}
+
 .submit-btn{
   background-color:#4285F4;
 }
@@ -287,6 +301,10 @@ dialog{
 .bg-blue{
   background-color: #4285F4;
   color: white;
+}
+
+.bg-red{
+  background-color: red;
 }
 
 .feed-card-details div{
@@ -414,4 +432,14 @@ select::after {
   border-radius: 4px;
   pointer-events: none;
   font-family: 'Inter';
+}
+
+.pfp {
+  margin-top: 50px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  /* Optional: Add a border */
+  border: 2px solid #181717;
+  align-self: center;
 }

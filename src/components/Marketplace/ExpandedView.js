@@ -37,14 +37,15 @@ export default function ExpandedView() {
   return (
     <div className='body' style={{"color":"aliceblue"}}>
     <SellAppBar/>
-    <img src={expandedItem.image}
+    <img 
+    src={expandedItem.image}
       alt='product'
       width={'300px'}
       height={'300px'}
       className='product-image'
     />
-    <div style={{"margin-top":"10px"}} className='no-spill-text'>{expandedItem.name}</div>
-    <div style={{"font-size":"20px"}} className='feed-card-header no-spill-text'>
+    <div style={{"marginTop":"10px"}} className='no-spill-text'>{expandedItem.name}</div>
+    <div style={{"fontSize":"20px"}} className='feed-card-header no-spill-text'>
     ₹&nbsp;{expandedItem.price}&nbsp;💸
     </div>
     <div className='description'>

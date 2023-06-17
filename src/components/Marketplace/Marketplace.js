@@ -7,6 +7,7 @@ import Feed from './Feed';
 
 
 export default function Marketplace() {
+  
   return (
     <div className='body'>
     <MarketAppBar/>

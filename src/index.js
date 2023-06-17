@@ -2,15 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Login from './components/Login/Login';
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-import CollectUserData from './components/CollectUserData/CollectUserData';
-import {HashRouter as Router,Routes,Route} from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { StorageProvider } from './context/StorageContext';
-import Marketplace from './components/Marketplace/Marketplace';
-import Sell from './components/Marketplace/Sell';
-import ExpandedView from './components/Marketplace/ExpandedView';
+import {HashRouter as Router} from 'react-router-dom';
+import App from './App';
 
 // TODO Create a context and define all firebase db calls there
 // collect user data using protectedRoute logic
@@ -21,17 +16,9 @@ root.render(
   <React.StrictMode>
     <AuthProvider>
     <StorageProvider>
-      <Router>
-        <Routes>
-          <Route exact path='/' element={<ProtectedRoute/>}>
-            <Route exact path='/' element={<Marketplace/>}/>
-            <Route exact path='/sell' element={<Sell/>}/>
-            <Route exact path='/buy/:id' element={<ExpandedView/>}/>
-          </Route>
-          <Route exact path='/login' element={<Login/>}/>
-          <Route exact path='/onboard' element={<CollectUserData/>}/>
-        </Routes>
-      </Router>
+    <Router>
+      <App/>
+    </Router>
     </StorageProvider>
     </AuthProvider>
   </React.StrictMode>

@@ -17,7 +17,7 @@ const Navbar = () => {
     <BottomNavigation value={value} onChange={handleChange} showLabels>
       <BottomNavigationAction component={Link} to="/" label="Trade" icon={<LocalGroceryStoreIcon/>}/>
       <BottomNavigationAction component={Link} to="/" label="Connect" icon={<ChatIcon/>}/>
-      <BottomNavigationAction component={Link} to="/" label="Account" icon={<AccountCircleIcon/>}/>
+      <BottomNavigationAction component={Link} to="/account" label="Account" icon={<AccountCircleIcon/>}/>
     </BottomNavigation>
     </div>
   );
