@@ -99,7 +99,7 @@ export default function Sell() {
     };
   
     return (
-      <div className="body center">
+      <div className="body full center">
         <SellAppBar/>
         <form onSubmit={handleSubmit} className='flex-col'>
             <input className='sell-input first' type="text" placeholder='Name of Item' value={bookName} onChange={(e) => setBookName(e.target.value)} />

@@ -3,7 +3,7 @@ import { useStore } from '../../context/StorageContext'
 import {useAuth} from '../../context/AuthContext'
 
 export default function Feed() {
-  const {getItems, items} = useStore();
+  const {getItems, items, expandItem} = useStore();
   const {user} = useAuth();
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function Feed() {
             <div>₹&nbsp;{i.price}</div>
           </div>
           <div className='feed-card-actions'>
-          <button className='bg-black'>View</button>
+          <button className='bg-black' onClick={()=>expandItem(i)}>View</button>
           <button className='bg-blue' onClick={()=>Chat(i)}>Chat</button>
           </div>
           </div>

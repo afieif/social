@@ -1,5 +1,5 @@
 import React, { useContext, useState} from 'react';
-import { collection, query, where, getCountFromServer, addDoc, orderBy, getDocs} from "firebase/firestore"; 
+import { collection, query, where, getCountFromServer, addDoc, orderBy, getDocs, limit} from "firebase/firestore"; 
 import { db } from '../firebase';
 
 const StorageContext = React.createContext();
@@ -11,6 +11,7 @@ export function useStore(){
 
 export function StorageProvider({children}) {
   const[items,setItems] = useState([]);
+  const[expandedItem,expandItem] = useState([]);
 
     async function isNewUser(uid){
         const userDataRef = collection(db,"UserData");
@@ -49,6 +50,25 @@ export function StorageProvider({children}) {
       }
     }
 
+    async function getItemByUid(uid) {
+      const q = query(
+        collection(db, "SellerItems"),
+        where("uid", "==", uid),
+        limit(1)
+      );
+    
+      const querySnapshot = await getDocs(q);
+    
+      if (!querySnapshot.empty) {
+        const doc = querySnapshot.docs[0];
+        const itemData = doc.data();
+        expandItem(itemData);
+      } else {
+        console.log("Item not found");
+      }
+    }
+    
+
     async function getItems(){
       const q = query(collection(db,"SellerItems"),orderBy("timestamp","desc"));
       const querySnapshot = await getDocs(q);
@@ -65,7 +85,10 @@ export function StorageProvider({children}) {
         storeUser,
         uploadItem,
         getItems,
-        items
+        items,
+        expandItem,
+        expandedItem,
+        getItemByUid
     }
 
     return (

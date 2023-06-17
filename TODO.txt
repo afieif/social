@@ -9,3 +9,5 @@ firestore
 Account Page
 Delete and Edit listing
 Delete image from storage as well
+
+fix sell.js css for body and modal

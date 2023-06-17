@@ -10,6 +10,7 @@ import { AuthProvider } from './context/AuthContext';
 import { StorageProvider } from './context/StorageContext';
 import Marketplace from './components/Marketplace/Marketplace';
 import Sell from './components/Marketplace/Sell';
+import ExpandedView from './components/Marketplace/ExpandedView';
 
 // TODO Create a context and define all firebase db calls there
 // collect user data using protectedRoute logic
@@ -25,6 +26,7 @@ root.render(
           <Route exact path='/' element={<ProtectedRoute/>}>
             <Route exact path='/' element={<Marketplace/>}/>
             <Route exact path='/sell' element={<Sell/>}/>
+            <Route exact path='/buy/:id' element={<ExpandedView/>}/>
           </Route>
           <Route exact path='/login' element={<Login/>}/>
           <Route exact path='/onboard' element={<CollectUserData/>}/>
