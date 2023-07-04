@@ -1,15 +1,18 @@
 import React, {useState, useRef, useEffect} from 'react'
 import {useAuth} from '../../context/AuthContext';
 import { useStore } from '../../context/StorageContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function CollectUserData() {
 
     const graduationYears = Array.from({ length: 10 }, (_, i) => 2023 + i); // Generate an array of graduation years
     const [selectedYear, setSelectedYear] = useState('');
     const [selectedBranch, setSelectedBranch] = useState('');
+    const [loading,setLoading] = useState(false);
     const scrollWrapperRef = useRef(null);
     const {storeUser} = useStore();
     const {user} = useAuth();
+    const Navigate = useNavigate();
 
     function handleSubmit(){
         if(selectedYear===''||selectedBranch==='')
@@ -18,7 +21,10 @@ export default function CollectUserData() {
         }
         else
         {
-            storeUser(user.uid,selectedBranch,selectedYear)
+            setLoading(true);
+            storeUser(user.uid,selectedBranch,selectedYear).then(()=>{
+                Navigate('/');
+            })
         }
     }
 
@@ -85,7 +91,7 @@ export default function CollectUserData() {
         </div>
     </div>
 
-    <button className='basic-button' onClick={()=>handleSubmit()}>Proceed</button>
+    <button className='basic-button' onClick={()=>handleSubmit()} disabled={loading}>{loading?"Processing..":"Proceed"}</button>
 
     </div>
   )

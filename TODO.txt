@@ -1,10 +1,6 @@
 Trade
 filters in feed for branch
-implement immersive ads in feed
+implement immersive ads in feed / routing ads
+
+Later
 Delete posts more than a year old 
-when loaded from firestore
-
-Account Page
-Edit listing
-
-fix sell.js css for body and modal
