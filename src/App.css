@@ -224,10 +224,25 @@
 
 dialog{
   max-width: 80vw;
-  max-height: fit-content;
+  max-height: 80vh;
   padding: 0px;
   border-radius: 10px;
   background-color: #000000;
+  position:absolute;
+  top: 50vh;
+  bottom: 50vh;
+}
+
+.image-container::after {
+  content: "Tap to close";
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 4px;
+  pointer-events: none;
+  font-family: 'Inter';
 }
 
 .font-Inter{
@@ -305,6 +320,10 @@ dialog{
 
 .bg-red{
   background-color: red;
+}
+
+.bg-green{
+  background-color: rgb(13, 226, 109);
 }
 
 .feed-card-details div{
@@ -420,18 +439,6 @@ select::after {
 .MuiToolbar-root{
   background-color: rgba(0, 0, 0, 0.685);
   justify-content: space-between;
-}
-
-.image-container::after {
-  content: "Tap to close";
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border-radius: 4px;
-  pointer-events: none;
-  font-family: 'Inter';
 }
 
 .pfp {

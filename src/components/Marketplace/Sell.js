@@ -115,7 +115,7 @@ export default function Sell() {
             </select>
             <input className='sell-input' type="number" name='phone' pattern="[0-9]{10}" placeholder='Whatsapp Number' value={whatsappNumber} onChange={(e) => setWhatsappNumber(e.target.value)} />
             <button className='btn-input' type="button" onClick={handleImageClick}>{image?"Select different image":"Add an Image"}</button>
-            {image && <button className='btn-input' type="button" onClick={()=>setShowImage(true)}>View Image</button>}
+            {image && <button className='btn-input bg-green' type="button" onClick={()=>setShowImage(true)}>View Image</button>}
             <input
               type="file"
               accept="image/*"
@@ -125,10 +125,10 @@ export default function Sell() {
             />
             {showImage && 
             <dialog open onClick={handleDialogClose} className='image-container'>
-            <img src={preview} alt='product' height={'200px'}/>
+            <img src={preview} alt='product' width={'100%'}/>
             </dialog>
             }
-            <button className='btn-input submit-btn' type="submit">{loader?"Uploading..":"Submit"}</button>
+            <button className='btn-input submit-btn' disabled={loader} type="submit">{loader?"Uploading..":"Submit"}</button>
         </form>
       </div>
     );

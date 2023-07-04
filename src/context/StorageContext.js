@@ -1,8 +1,16 @@
 import React, { useContext, useState} from 'react';
-import { collection, query,
-  where, getCountFromServer,
-  addDoc, orderBy, getDocs,
-  limit, deleteDoc} from "firebase/firestore"; 
+import { 
+  collection, 
+  query,
+  where, 
+  getCountFromServer,
+  addDoc, 
+  orderBy, 
+  getDocs,
+  limit, 
+  deleteDoc,
+} from "firebase/firestore"; 
+import { getStorage, ref, deleteObject } from "firebase/storage";
 import { db } from '../firebase';
 
 const StorageContext = React.createContext();
@@ -16,6 +24,8 @@ export function StorageProvider({children}) {
   const[items,setItems] = useState([]);
   const[myItems,setMyItems] = useState([]);
   const[expandedItem,expandItem] = useState([]);
+  const storage = getStorage();
+
 
     async function isNewUser(uid){
         const userDataRef = collection(db,"UserData");
@@ -77,8 +87,22 @@ export function StorageProvider({children}) {
         const querySnapshot = await getDocs(query(collection(db, "SellerItems"), where("uid", "==", itemId)));
         if (!querySnapshot.empty) {
           const docToDelete = querySnapshot.docs[0];
-          await deleteDoc(docToDelete.ref);
-          console.log("Item deleted successfully");
+
+
+          const imageRef = ref(storage, `SellerImages/${docToDelete.data().uid}`);
+
+        deleteDoc(docToDelete.ref).then(() =>{
+          deleteObject(imageRef).then(() => {
+            console.log("Item deleted successfully");
+          }).catch((error) => {
+            console.log(error)
+          });
+        }).catch((error) => {
+          console.log(error)
+        });
+
+
+          // await deleteDoc(docToDelete.ref);
           setMyItems([]);
         } else {
           console.log("No matching item found");

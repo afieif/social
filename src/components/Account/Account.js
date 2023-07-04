@@ -8,7 +8,7 @@ export default function Account() {
     const {user} = useAuth();
   return (
     <div className='body'>
-    <img src={user.photoURL} alt='pfp' className='pfp'/>
+    <img src={user?user.photoURL:require('../../assets/pfp.jpg')} alt='pfp' className='pfp'/>
     <button onClick={logout} className='logout-btn'>Logout</button>
     <MyFeed/>
     <Navbar/>

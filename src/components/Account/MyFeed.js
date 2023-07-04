@@ -1,9 +1,12 @@
 import React, {useEffect} from 'react'
 import { useStore } from '../../context/StorageContext'
 import {useAuth} from '../../context/AuthContext'
+import { useNavigate } from 'react-router-dom';
+
 
 export default function MyFeed() {
-  const {getMyItems, myItems, deleteItem} = useStore();
+  const {getMyItems, myItems, deleteItem, expandItem} = useStore();
+  const Navigate = useNavigate();
   const {user} = useAuth();
 
   useEffect(() => {
@@ -11,6 +14,11 @@ export default function MyFeed() {
     console.log(user)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  function Expand(obj){
+    expandItem(obj);
+    Navigate('/buy/'+obj.uid);
+  }
   
 
   return (
@@ -22,7 +30,7 @@ export default function MyFeed() {
             <div>₹&nbsp;{i.price}</div>
           </div>
           <div className='feed-card-actions'>
-          <button className='bg-black' >Edit</button>
+          <button className='bg-black' onClick={()=>Expand(i)}>View</button>
           <button className='bg-red' onClick={()=>deleteItem(i.uid)}>Delete</button>
           </div>
           </div>
