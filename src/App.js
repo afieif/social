@@ -7,6 +7,7 @@ import Marketplace from './components/Marketplace/Marketplace';
 import Sell from './components/Marketplace/Sell';
 import ExpandedView from './components/Marketplace/ExpandedView';
 import Account from './components/Account/Account';
+import Chat from './components/Connect/Chat';
 
 export default function App() {
  
@@ -17,6 +18,7 @@ export default function App() {
             <Route exact path='/account' element={<Account/>}/>
             <Route exact path='/sell' element={<Sell/>}/>
             <Route exact path='/buy/:id' element={<ExpandedView/>}/>
+            <Route exact path='/chat/:room' element={<Chat/>}/>
           </Route>
           <Route exact path='/login' element={<Login/>}/>
           <Route exact path='/onboard' element={<CollectUserData/>}/>

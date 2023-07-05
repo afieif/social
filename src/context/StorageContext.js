@@ -26,15 +26,12 @@ export function StorageProvider({children}) {
   const[expandedItem,expandItem] = useState([]);
   const storage = getStorage();
 
-
     async function isNewUser(uid){
         const userDataRef = collection(db,"UserData");
         const q = query(userDataRef, where("uid", "==", uid));
         const snapshot = await getCountFromServer(q);
         return snapshot.data().count===0;
     }
-
-    // add loading and routing to home functionality
 
     async function storeUser(uid, branch, year) {
         try {
@@ -48,7 +45,7 @@ export function StorageProvider({children}) {
           alert("Error storing user data");
           console.log(error);
         }
-      }
+    }
 
     async function uploadItem(data,setLoader,navigate){
       try {
@@ -112,7 +109,6 @@ export function StorageProvider({children}) {
       }
     }
     
-
     async function getMyItems(uid){
       const q = query(
         collection(db, "SellerItems"),
@@ -152,7 +148,6 @@ export function StorageProvider({children}) {
     
       setItems(filteredItems);
     }
-    
 
     async function getItems(){
       const q = query(collection(db,"SellerItems"),orderBy("timestamp","desc"));
