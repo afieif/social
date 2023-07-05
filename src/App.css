@@ -488,6 +488,14 @@ select::after {
   margin-right: 10px;
 }
 
+.profile-photo-sender {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 10px;
+}
+
 .profile-photo img {
   width: 100%;
   height: 100%;
@@ -503,6 +511,7 @@ select::after {
 
 .sender {
   align-self: flex-end;
+  flex-direction: row;
   text-align: right;
 }
 
@@ -521,8 +530,11 @@ select::after {
 .messages{
   display: flex;
   flex-direction: column;
-  margin-top: 70px;
+  margin-top: 50px;
   margin-bottom: 50px;
+  background: url('./assets/chat-bg.jpg') ;
+  background-size: contain;
+  padding: 10px 0px;
 }
 
 .chat-textbox {
@@ -532,7 +544,7 @@ select::after {
   width: 100%;
   display: flex;
   align-items: center;
-  background-color: #F4F4F4;
+  background-color: #000000;
   padding: 10px;
   box-sizing: border-box;
 }
@@ -551,7 +563,7 @@ select::after {
   padding: 8px 15px;
   border: none;
   border-radius: 5px;
-  background-color: #075e54;
+  background-color: #4285F4;
   color: white;
   font-size: 14px;
   cursor: pointer;

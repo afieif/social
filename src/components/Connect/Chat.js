@@ -15,6 +15,7 @@ import ChatroomBar from './ChatroomBar';
 
 export default function Chat() {
   const [messages, setMessages] = useState([]);
+  const [disableText, setDisableText] = useState(false);
   const [newMessage, setNewMessage] = useState('');
   const messagesRef = collection(db, 'messages');
   const { room } = useParams();
@@ -43,6 +44,8 @@ export default function Chat() {
     event.preventDefault();
 
     if (newMessage === '') return;
+    setNewMessage('Sending...')
+    setDisableText(true);
     await addDoc(messagesRef, {
       text: newMessage,
       createdAt: serverTimestamp(),
@@ -51,6 +54,7 @@ export default function Chat() {
       pfp: auth.currentUser.photoURL,
       room: room,
     });
+    setDisableText(false);
     setNewMessage('');
   };
 
@@ -73,7 +77,7 @@ export default function Chat() {
                   <p class='sender-name'>{message.user}</p>
                   <p class='message'>{message.text}</p>
                 </div>
-                <div class='profile-photo'>
+                <div class='profile-photo-sender'>
                   <img
                     src={
                       message.pfp
@@ -112,6 +116,7 @@ export default function Chat() {
           <input
             id='message-input'
             type='text'
+            disabled={disableText}
             value={newMessage}
             onChange={(event) => setNewMessage(event.target.value)}
             placeholder='Type your message here...'
