@@ -10,9 +10,9 @@ const Navbar = () => {
   const location = useLocation();
   return (
     <div className='navbar'>
-    <BottomNavigation value={location.pathname==='/'? 0 : location.pathname==='/connect'? 1 : 2} showLabels>
+    <BottomNavigation value={location.pathname==='/'? 0 : location.pathname==='/rooms'? 1 : 2} showLabels>
       <BottomNavigationAction component={Link} to={"/"} label="Trade" icon={<LocalGroceryStoreIcon/>}/>
-      <BottomNavigationAction component={Link} to={"/chat/general"} label="Connect" icon={<ChatIcon/>}/>
+      <BottomNavigationAction component={Link} to={"/rooms"} label="Discuss" icon={<ChatIcon/>}/>
       <BottomNavigationAction component={Link} to={"/account"} label="Account" icon={<AccountCircleIcon/>}/>
     </BottomNavigation>
     </div>

@@ -470,6 +470,41 @@ select::after {
   align-self: center;
 }
 
+.app-bar-text{
+  font-weight: bold;
+  font-family: 'Inter';
+  font-size: 20px;
+}
+
+.rooms{
+  background-color: #141318;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.room-feed{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 100px;
+  justify-content: center;
+}
+
+.room-feed div{
+  width: 40vw;
+  padding: 35px 5px;
+  margin: 10px 10px;
+  font-size: 18px;
+  font-family: 'Inter';
+  background-color: #333;
+  color: #FDFDFE;
+  text-align: center;
+  border-radius: 18px;
+}
+
 
 
 /*-----------------------------------  */
@@ -486,6 +521,7 @@ select::after {
   border-radius: 50%;
   overflow: hidden;
   margin-right: 10px;
+  margin-left: 5px;
 }
 
 .profile-photo-sender {
@@ -494,6 +530,7 @@ select::after {
   border-radius: 50%;
   overflow: hidden;
   margin-left: 10px;
+  margin-right: 5px;
 }
 
 .profile-photo img {
@@ -535,6 +572,7 @@ select::after {
   background: url('./assets/chat-bg.jpg') ;
   background-size: contain;
   padding: 10px 0px;
+  min-height: 100vh;
 }
 
 .chat-textbox {

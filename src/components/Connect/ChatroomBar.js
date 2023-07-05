@@ -8,7 +8,7 @@ const Navigate = useNavigate();
 return (
     <AppBar>
         <Toolbar>
-            <ArrowBackIcon fontSize='large' onClick={()=>Navigate('/')}/>
+            <ArrowBackIcon fontSize='large' onClick={()=>Navigate('/rooms')}/>
             {props.name.toUpperCase()}
         </Toolbar>
     </AppBar>

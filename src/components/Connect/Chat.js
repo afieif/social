@@ -59,7 +59,7 @@ export default function Chat() {
   };
 
   return (
-    <div>
+    <div className='chat-parent'>
       <ChatroomBar name={room} />
       <div className='messages'>
         {messages.map((message) => (
