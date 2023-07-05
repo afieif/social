@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import { useStore } from '../../context/StorageContext'
 import {useAuth} from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom';
+import Filter from './Filter';
 
 export default function Feed() {
   const {getItems, items, expandItem} = useStore();
@@ -10,7 +11,6 @@ export default function Feed() {
 
   useEffect(() => {
     getItems();
-    console.log(user)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -28,6 +28,7 @@ export default function Feed() {
 
   return (
     <div className='feed'>
+        <Filter/>
         {items.map((i)=>{
           return <div key={i.image} className='feed-card'>
           <h2 className='feed-card-header'>{i.name}</h2>

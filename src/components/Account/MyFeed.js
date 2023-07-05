@@ -11,7 +11,6 @@ export default function MyFeed() {
 
   useEffect(() => {
     getMyItems(user.uid);
-    console.log(user)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

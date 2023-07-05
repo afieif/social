@@ -8,6 +8,11 @@
     justify-content: flex-end;
 }
 
+.flex{
+  display: flex;
+  flex-direction: column;
+}
+
 .flex-col{
   display: flex;
   flex-direction: column;
@@ -194,6 +199,20 @@
   color: aliceblue;
 }
 
+.filter{
+  padding: 15px 0px;
+  background-color: #333;
+  border-radius: 18px;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 100;
+  font-family: 'Inter';
+  border: none;
+  outline: none;
+  color: aliceblue;
+  margin: 70px 10px 0px;
+}
+
 .btn-input{
   padding: 15px 10px;
   background-color: #706f6f;
@@ -251,7 +270,7 @@ dialog{
 }
 
 .feed-card:first-child{
-  margin-top: 80px;
+  margin-top: 10px;
 }
 
 .feed-card:last-child{

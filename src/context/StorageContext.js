@@ -125,10 +125,32 @@ export function StorageProvider({children}) {
       let filteredItems = [];
       querySnapshot.forEach((doc) => {
         filteredItems.push(doc.data());
-        console.log(doc.data());
       });
     
       setMyItems(filteredItems);
+    }
+
+    async function getFilteredItems(branch){
+      if(branch === "")
+      {
+        getItems();
+        return;
+      }
+
+      const q = query(
+        collection(db, "SellerItems"),
+        where("Branch", "==", branch),
+        orderBy("timestamp", "desc")
+      );
+    
+      const querySnapshot = await getDocs(q);
+    
+      let filteredItems = [];
+      querySnapshot.forEach((doc) => {
+        filteredItems.push(doc.data());
+      });
+    
+      setItems(filteredItems);
     }
     
 
@@ -138,7 +160,6 @@ export function StorageProvider({children}) {
       let newItem = [];
       querySnapshot.forEach((doc)=>{
         newItem.push(doc.data());
-        console.log(doc.data());
         setItems(newItem);
       })
     }
@@ -155,7 +176,8 @@ export function StorageProvider({children}) {
         myItems,
         setMyItems,
         getMyItems,
-        deleteItem
+        deleteItem,
+        getFilteredItems
     }
 
     return (
