@@ -111,7 +111,7 @@ export default function Chat() {
         <span ref={dummy}></span>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autocomplete="off">
         <div class='chat-textbox'>
           <input
             id='message-input'
