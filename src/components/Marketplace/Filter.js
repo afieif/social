@@ -12,7 +12,7 @@ export default function Filter() {
     setBranch(e.target.value)
     getFilteredItems(e.target.value)
     }}>
-            <option value="">Select branch</option>
+            <option value="">Filter</option>
             <option value="COMPS">COMPS</option>
             <option value="MECH">MECH</option>
             <option value="ECS">ECS</option>

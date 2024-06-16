@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo} from 'react';
 import { db, auth } from '../../firebase';
 import { useParams } from 'react-router-dom';
 import {
@@ -38,7 +38,7 @@ export default function Chat() {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [room]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -58,56 +58,60 @@ export default function Chat() {
     setNewMessage('');
   };
 
+  const renderMessages = useMemo(() => {
+    return messages.map((message) => (
+      <div
+        key={message.id}
+        className={
+          message.uid === auth.currentUser.uid
+            ? 'chat-bubble sender'
+            : 'chat-bubble'
+        }
+      >
+        {message.uid === auth.currentUser.uid ? (
+          <>
+            <div className='message-container'>
+              <p className='sender-name'>{message.user}</p>
+              <p className='message'>{message.text}</p>
+            </div>
+            <div className='profile-photo-sender'>
+              <img
+                src={
+                  message.pfp
+                    ? message.pfp
+                    : require('../../assets/pfp.jpg')
+                }
+                alt="Sender's Profile"
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className='profile-photo'>
+              <img
+                src={
+                  message.pfp
+                    ? message.pfp
+                    : require('../../assets/pfp.jpg')
+                }
+                alt='Profile'
+              />
+            </div>
+            <div className='message-container'>
+              <p className='sender-name'>{message.user}</p>
+              <p className='message'>{message.text}</p>
+            </div>
+          </>
+        )}
+      </div>
+    ));
+  }, [messages]);
+
   return (
     <div className='chat-parent'>
       <ChatroomBar name={room} />
       <div className='messages'>
-        {messages.map((message) => (
-          <div
-            key={message.id}
-            className={
-              message.uid === auth.currentUser.uid
-                ? 'chat-bubble sender'
-                : 'chat-bubble'
-            }
-          >
-            {message.uid === auth.currentUser.uid ? (
-              <>
-                <div class='message-container'>
-                  <p class='sender-name'>{message.user}</p>
-                  <p class='message'>{message.text}</p>
-                </div>
-                <div class='profile-photo-sender'>
-                  <img
-                    src={
-                      message.pfp
-                        ? message.pfp
-                        : require('../../assets/pfp.jpg')
-                    }
-                    alt="Sender's Profile"
-                  />
-                </div>
-              </>
-            ) : (
-              <>
-                <div class='profile-photo'>
-                  <img
-                    src={
-                      message.pfp
-                        ? message.pfp
-                        : require('../../assets/pfp.jpg')
-                    }
-                    alt='Profile'
-                  />
-                </div>
-                <div class='message-container'>
-                  <p class='sender-name'>{message.user}</p>
-                  <p class='message'>{message.text}</p>
-                </div>
-              </>
-            )}
-          </div>
-        ))}
+        {renderMessages}
         <span ref={dummy}></span>
       </div>
 
